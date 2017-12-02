@@ -1,6 +1,6 @@
 permalink: /:year/:month/:title/
 url: https://neujie.github.io/
-author: Neujie
+author: Niujie
 highlighter: rouge
 timezone: Asia/Shanghai
 gems: [jekyll-paginate]

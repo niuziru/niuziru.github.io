@@ -1,1 +1,7 @@
-theme: jekyll-theme-slate
+permalink: /:year/:month/:title/
+url: http://luklab.com
+author: 卢克
+highlighter: rouge
+timezone: Asia/Shanghai
+gems: [jekyll-paginate]
+paginate: 24

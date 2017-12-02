@@ -1,16 +1,10 @@
 ---
 layout: post
-
 title: 我的小宝贝——izero：发烧反复，病菌感冒，打屁针吧
-
 categories:
-
 - Life
-
 tags:
-
 - 家
-
 ---
 
 发烧，吃美林、好转；

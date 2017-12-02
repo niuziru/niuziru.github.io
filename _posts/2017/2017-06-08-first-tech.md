@@ -1,6 +1,10 @@
 ---
 layout: post
-title: 第一个测试博客
+title: ETCD快速链接
+categories:
+- 技术
+tags:
+- ETCD
 ---
 
 让我们荡起双桨，一起到学海中游泳吧

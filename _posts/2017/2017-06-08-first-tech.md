@@ -1,8 +1,6 @@
 ---
-layout: default
-
+layout: post
 title: 第一个测试博客
-
 ---
 
 让我们荡起双桨，一起到学海中游泳吧

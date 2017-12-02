@@ -1,6 +1,6 @@
 permalink: /:year/:month/:title/
-url: http://luklab.com
-author: 卢克
+url: http://neujie.github.io
+author: Neujie
 highlighter: rouge
 timezone: Asia/Shanghai
 gems: [jekyll-paginate]

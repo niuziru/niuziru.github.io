@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Config Tomcat以指定的身份(非root)运行
+title: 配置Tomcat以指定的身份(非root)运行
 categories:
 - 技术
 tags:

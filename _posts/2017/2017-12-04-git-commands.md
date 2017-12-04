@@ -11,4 +11,4 @@ tags:
 * [GIT的4个阶段的撤销更改](https://segmentfault.com/a/1190000011969554)
 * [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
 
-<img src="/images/git-commands.png" alt="GIT commands" width="90%" height="90%" />
+<img src="/images/git-commands.png" alt="GIT commands" width="97%" height="97%" />

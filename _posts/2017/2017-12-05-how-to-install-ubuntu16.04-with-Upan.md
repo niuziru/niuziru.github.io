@@ -1,3 +1,11 @@
+---
+layout: post
+title: 如何使用u盘安装ubuntu16.04
+categories:
+- Technology
+tags:
+- 系统
+---
 
 
 # 使用upan系统制作工具

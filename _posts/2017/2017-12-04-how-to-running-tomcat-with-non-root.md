@@ -2,7 +2,7 @@
 layout: post
 title: 配置Tomcat以指定的身份(非root)运行
 categories:
-- 技术
+- Technology
 tags:
 - Tomcat
 ---

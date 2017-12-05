@@ -2,7 +2,7 @@
 layout: post
 title: ETCD快速链接
 categories:
-- 技术
+- Technology
 tags:
 - ETCD
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: GIT常用指令
 categories:
-- 技术
+- Technology
 tags:
 - GIT
 ---

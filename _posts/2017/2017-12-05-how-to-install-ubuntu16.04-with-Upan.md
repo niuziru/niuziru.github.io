@@ -79,6 +79,7 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 ## 其他操作
 * [Ubuntu 16.04 LTS安装好需要设置的15件事](http://www.linuxidc.com/Linux/2016-04/130519.htm)
 * [Ubuntu 安装terminator 后更改默认终端设置](http://blog.csdn.net/qq_20336817/article/details/46122849)
+
 ```sh
 $ sudo apt-get install terminator
 $ sudo apt-get install dconf-tools

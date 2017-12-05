@@ -91,4 +91,3 @@ $ sudo apt-get install dconf-tools
     exec  x-terminal-emulator
     exec-arg -e
 ```
-

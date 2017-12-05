@@ -91,3 +91,6 @@ $ sudo apt-get install dconf-tools
     exec  x-terminal-emulator
     exec-arg -e
 ```
+
+* [Ubuntu 16.04安装sogou 拼音输入法](http://blog.csdn.net/ljheee/article/details/52966456)
+*

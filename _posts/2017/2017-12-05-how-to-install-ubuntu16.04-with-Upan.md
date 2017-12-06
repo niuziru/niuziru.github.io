@@ -92,6 +92,17 @@ sudo fc-cache -f -v
 
 接着注销ubuntu，再次登录就可以使用该go字体了。
 
+## 安装开发工具
+
+* [安装激活goland2017.3版本](2017-12-05-active-goland-2017.3.md)
+* [安装vscode指引](https://code.visualstudio.com/docs/setup/linux)
+* [安装atom](http://www.linuxidc.com/Linux/2014-05/101501.htm)
+
+    sudo add-apt-repository ppa:webupd8team/atom
+    sudo apt-get update
+    sudo apt-get install atom
+
+
 ## 安装有道字典
 
 安装有道词典的[1.0.2版本](http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb)，据说1.1.0版本有依赖问题。暂时不要挑战了。
@@ -184,6 +195,9 @@ sudo fc-cache -f -v
 ```
 
 ## 其他操作
+
+* [微信&QQ工具](http://blog.csdn.net/zhangrelay/article/details/52398037)
+* [linux版本的wechat](http://blog.csdn.net/minione_2016/article/details/53289430?locationNum=4&fps=1)
 * [Ubuntu 16.04 LTS安装好需要设置的15件事](http://www.linuxidc.com/Linux/2016-04/130519.htm)
 * [Ubuntu 安装terminator 后更改默认终端设置](http://blog.csdn.net/qq_20336817/article/details/46122849)
 

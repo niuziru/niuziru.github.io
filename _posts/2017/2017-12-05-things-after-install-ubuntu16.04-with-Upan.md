@@ -95,13 +95,22 @@ sudo fc-cache -f -v
 ## 安装开发工具
 
 * [安装激活goland2017.3版本](2017-12-05-active-goland-2017.3.md)
+* [安装LiteIDE](https://golangtc.com/download/liteide)
+
+    tar jxvf liteidex32.1.linux64-qt4.tar.bz2
+    cd liteide
+    编辑liteide.desktop,根据自己的路径修改exec和icon配置
+    然后拷贝该配置到$HOME/.local/share/applications下
+    cd $HOME/liteide/bin/
+    启动liteide
+    并锁定到启动器上即可。
+
 * [安装vscode指引](https://code.visualstudio.com/docs/setup/linux)
 * [安装atom](http://www.linuxidc.com/Linux/2014-05/101501.htm)
 
     sudo add-apt-repository ppa:webupd8team/atom
     sudo apt-get update
     sudo apt-get install atom
-
 
 ## 安装有道字典
 

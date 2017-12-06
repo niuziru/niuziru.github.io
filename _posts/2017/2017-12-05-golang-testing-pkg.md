@@ -7,7 +7,6 @@ tags:
 - Golang
 ---
 
-[转载：Golang测试包小结](https://studygolang.com/articles/2464)
 
 # 1、Golang测试包
 
@@ -232,7 +231,8 @@ go test是go语言自带的测试工具，其中包含的是两类，单元测�
 
 # 5、扩展阅读
 
+* [Golang测试包小结](https://studygolang.com/articles/2464)
 * [如何测试Go代码——单元测试](http://codethoughts.info/go/2015/04/05/how-to-test-go-code/)
 * [Go单元测试基本篇](https://www.qcloud.com/community/article/56073001484044261?fromSource=gwzcw.59715.59715.59715)
 * [Go单元测试进阶篇](https://www.cnblogs.com/qcloud1001/p/6645461.html)
-* [Go的多种测试示例库](https://github.com/feixiao/testing)
+

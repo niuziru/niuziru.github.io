@@ -76,6 +76,22 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 ```
 
+## 安装gofont字体
+
+从github下载gofont, `git clone https://github.com/golang/image.git`, 拷贝`font/gofont/ttfs/`下面的字体到系统字体中：
+
+```sh
+sudo mkdir /usr/share/fonts/gofonts
+sudo cp font/gofont/ttfs /usr/share/fonts/gofonts
+cd /usr/share/fonts/gofonts
+sudo chmod 744 *
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache -f -v
+```
+
+接着注销ubuntu，再次登录就可以使用该go字体了。
+
 ## 其他操作
 * [Ubuntu 16.04 LTS安装好需要设置的15件事](http://www.linuxidc.com/Linux/2016-04/130519.htm)
 * [Ubuntu 安装terminator 后更改默认终端设置](http://blog.csdn.net/qq_20336817/article/details/46122849)

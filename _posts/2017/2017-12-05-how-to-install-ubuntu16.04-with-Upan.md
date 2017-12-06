@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如何使用u盘安装ubuntu16.04
+title: 使用u盘安装ubuntu16.04的那些事儿
 categories:
 - Technology
 tags:

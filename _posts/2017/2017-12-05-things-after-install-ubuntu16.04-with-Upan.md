@@ -349,9 +349,80 @@ sudo apt-get install shutter
 ```
 
 
+## 11、挂在其他磁盘
 
+### 11.1、查看其他磁盘卷
 
-## 11、其他操作
+```sh
+zero@zero:~$ sudo fdisk -l
+[sudo] zero 的密码：
+Disk /dev/sda: 232.9 GiB, 250059350016 bytes, 488397168 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xe159e159
+
+设备       启动     Start    末尾    扇区   Size Id 类型
+/dev/sda1  *       206848 102606847 102400000  48.8G  7 HPFS/NTFS/exFAT
+/dev/sda2       102608894 205006847 102397954  48.8G  5 扩展
+/dev/sda3       205006848 488394751 283387904 135.1G  7 HPFS/NTFS/exFAT
+/dev/sda5       102608896 110606335   7997440   3.8G 82 Linux 交换 / Solaris
+/dev/sda6       110608384 205006847  94398464    45G 83 Linux
+
+Partition table entries are not in disk order.
+```
+
+### 11.2、挂在操作
+识别出来哪个是自己的盘符，然后创建自己可以识别的名称，然后进行挂载操作即可。
+
+```sh
+zero@zero:~$ sudo mkdir /mnt/C
+zero@zero:~$ sudo mount -t ntfs /dev/sda1 /mnt/C -o iocharset=utf8,umask=0
+zero@zero:~$ sudo mkdir /mnt/E
+zero@zero:~$ sudo mount -t ntfs /dev/sda3 /mnt/E -o iocharset=utf8,umask=0
+```
+
+### 11.3、持久化，写入系统配置中
+挂载磁盘的位置在：`/etc/fstab`
+
+```sh
+zero@zero:~$ cat /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda6 during installation
+UUID=6acca2e8-0890-409d-b742-52b3ebac2050 /               ext4    errors=remount-ro 0       1
+# swap was on /dev/sda5 during installation
+UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw              0       0
+```
+
+加入我们的指令：
+
+```sh
+zero@zero:~$ cat /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda6 during installation
+UUID=6acca2e8-0890-409d-b742-52b3ebac2050 /               ext4    errors=remount-ro 0       1
+# swap was on /dev/sda5 during installation
+UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw              0       0
+# mount -t ntfs /dev/sda1 /mnt/C -o iocharset=utf8,umask=0
+/dev/sda1 /mnt/C ntfs utf8,umask=0
+# mount -t ntfs /dev/sda3 /mnt/E -o iocharset=utf8,umask=0
+/dev/sda3 /mnt/E ntfs utf8,umask=0
+```
+
+## 90、其他操作
 
 * [微信&QQ工具](http://blog.csdn.net/zhangrelay/article/details/52398037)
 * [linux版本的wechat](http://blog.csdn.net/minione_2016/article/details/53289430?locationNum=4&fps=1)

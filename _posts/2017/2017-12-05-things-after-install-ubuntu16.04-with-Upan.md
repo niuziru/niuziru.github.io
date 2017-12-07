@@ -279,7 +279,10 @@ $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 下载[网易云音乐](http://music.163.com/#/download)
 
 ```sh
-
+$ cd download/
+$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu
+$ sudo apt-get install -f
+$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu
 ```
 
 ## 6、安装开发工具

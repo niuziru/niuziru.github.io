@@ -14,16 +14,16 @@ tags:
 
 # 系统安装完毕后
 
-## 更系统源
+## 1、更系统源
 
-### 如何更改源
+### 1.1、 如何更改源
 
 可以在软件更新中选择源,
 使用如下命令更改(修改前先备份):
 
     sudo vim /etc/apt/source.list
 
-### 阿里云
+### 1.2、 阿里云
 
 ```sh
 deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse
@@ -38,7 +38,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted unive
 deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse
 ```
 
-### 东北大学
+### 1.3、 东北大学
 
 ```sh
 deb-src http://mirror.neu.edu.cn/ubuntu/ xenial main restricted #Added by software-properties
@@ -60,7 +60,7 @@ deb http://mirror.neu.edu.cn/ubuntu/ xenial-security universe
 deb http://mirror.neu.edu.cn/ubuntu/ xenial-security multiverse
 ```
 
-### 清华大学
+### 1.4、 清华大学
 
 ```sh
 # deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
@@ -77,9 +77,9 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 ```
 
 
-## 设置系统
+## 2、设置系统
 
-### 设置unity的位置
+### 2.1、设置unity的位置
 参考[将 Ubuntu 16.04 LTS 的 Unity 启动器移动到桌面底部](http://www.linuxidc.com/Linux/2016-03/129359.htm)
 
 从左侧移动感到底部：
@@ -90,21 +90,20 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 
     gsettings set com.canonical.Unity.Launcher launcher-position Left
 
-### 点击unity启动器图标最小化
+### 2.2、点击unity启动器图标最小化
 
     gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
 
-### 配置Dash
+### 2.3、配置Dash
 
-“安全和隐私” 》 “搜索”， 打开在线搜索的功能
+    “安全和隐私” 》 “搜索”， 打开在线搜索的功能
+    “安全和隐私” 》 “诊断”，关闭向 Canonical 发送错误报告
 
-“安全和隐私” 》 “诊断”，关闭向 Canonical 发送错误报告
-
-### 配置快捷键
+### 2.4、配置快捷键
 
 [参考文章](https://www.cnblogs.com/sink_cup/archive/2013/04/26/1987901.html)
 
-#### 快速启动终端
+#### 2.4.1、快速启动终端
 
 ```sh
 设置快捷键
@@ -112,7 +111,7 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 启动器——》启动终端，设成Win + R。
 ```
 
-#### 设置显示桌面快捷键
+#### 2.4.2、设置显示桌面快捷键
 需要安装`compizconfig-settings-manager`软件
 
 ```sh
@@ -124,7 +123,7 @@ ccsm——》桌面——》Ubuntu Unity Plugin。
 General——》“Show Desktop”——》设置成“win + d”。
 ```
 
-### Ubuntu 切换中文目录或英文目录切换
+### 2.5、Ubuntu 切换中文目录或英文目录切换
 
 * 切换为英文：
 
@@ -144,14 +143,14 @@ echo 选“不要再提醒”和“保持原来的名称”
 
 `该配置需要重启生效`
 
-### ssh忽略known_hosts
+### 2.6、ssh忽略known_hosts
 
 ```sh
 mkdir -p ~/.ssh
 echo -e "StrictHostKeyChecking no\nUserKnownHostsFile /dev/null" > ~/.ssh/config
 ```
 
-### 安装gofont字体
+### 2.7、安装gofont字体
 
 从github下载gofont, `git clone https://github.com/golang/image.git`, 拷贝`font/gofont/ttfs/`下面的字体到系统字体中：
 
@@ -167,7 +166,7 @@ sudo fc-cache -f -v
 
 接着注销ubuntu，再次登录就可以使用该go字体了。
 
-## 安装有道字典
+## 3、安装有道字典
 
 安装有道词典的[1.0.2版本](http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb)，据说1.1.0版本有依赖问题。暂时不要挑战了。
 
@@ -258,9 +257,9 @@ sudo fc-cache -f -v
   您希望继续执行吗？ [Y/n] y
 ```
 
-## 安装输入法
+## 4、安装输入法
 
-### 搜狗输入发
+### 4.1、搜狗输入发
 
 参照[Ubuntu 16.04安装sogou 拼音输入法](http://blog.csdn.net/ljheee/article/details/52966456)和[Ubuntu16.04常用软件](http://blog.csdn.net/bt8023cpt/article/details/53997607)
 
@@ -273,9 +272,9 @@ $ sudo apt-get install -f
 $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 ```
 
-## 安装播放器
+## 5、安装播放器
 
-### 网易云音乐
+### 5.1、网易云音乐
 
 下载[网易云音乐](http://music.163.com/#/download)
 
@@ -283,7 +282,7 @@ $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 
 ```
 
-## 安装开发工具
+## 6、安装开发工具
 
 * [安装激活goland2017.3版本](2017-12-05-active-goland-2017.3.md)
 * [安装LiteIDE](https://golangtc.com/download/liteide)
@@ -307,26 +306,26 @@ $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
     sudo apt-get install atom
 ```
 
-## 安装xmind
+## 7、安装xmind
 
 * [下载xmind](http://www.xmind.net/download/linux/)
 * [安装xmind](http://blog.csdn.net/faryang/article/details/70238326)
 
-## 安装FoxitReader
+## 8、安装FoxitReader
 
 * [下载FoxitReader x64版本](http://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/linux/2.x/2.4/en_us/FoxitReader2.4.1.0609_Server_x64_enu_Setup.run.tar.gz)
 * [安装FoxitReader](https://www.cnblogs.com/EasonJim/p/7231936.html)
 
-## 安装WPS
+## 9、安装WPS
 
 * 下载[WPS软件包](http://linux.wps.cn/)
-* 下载[WPS依赖的字体](../../packages/wps_symbol_fonts.zip)(违删)
+* 下载[WPS依赖的字体](https://github.com/neujie/neujie.github.io/blob/master/packages/wps_symbol_fonts.zip)(违删)
 * 安装字体方法参照`安装gofont操作`
 
-## 图形软件
+## 10、图形软件
 
-### 画图工具
-#### Dia
+### 10.1、画图工具
+#### 10.1.1、Dia
 
 在软件仓库里找`dia`或者使用：
 
@@ -334,13 +333,13 @@ $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 sudo apt-get install dia
 ```
 
-#### kolourpaint
+#### 10.1.2、kolourpaint
 
 ```bash
 sudo apt-get install  kolourpaint4
 ```
 
-#### shutter
+#### 10.1.3、shutter
 
 ```bash
 sudo apt-get install shutter
@@ -349,7 +348,7 @@ sudo apt-get install shutter
 
 
 
-## 其他操作
+## 11、其他操作
 
 * [微信&QQ工具](http://blog.csdn.net/zhangrelay/article/details/52398037)
 * [linux版本的wechat](http://blog.csdn.net/minione_2016/article/details/53289430?locationNum=4&fps=1)
@@ -368,5 +367,3 @@ $ sudo apt-get install dconf-tools
     exec-arg -e
 ```
 
-*
-*

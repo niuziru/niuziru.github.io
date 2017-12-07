@@ -280,9 +280,9 @@ $ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 
 ```sh
 $ cd download/
-$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu
+$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu.deb
 $ sudo apt-get install -f
-$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu
+$ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu.deb
 ```
 
 ## 6、安装开发工具

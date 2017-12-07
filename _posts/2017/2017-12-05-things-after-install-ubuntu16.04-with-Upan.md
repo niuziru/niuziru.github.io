@@ -14,7 +14,7 @@ tags:
 
 # 系统安装完毕后
 
-## 更新源
+## 更系统源
 
 ### 如何更改源
 
@@ -76,7 +76,82 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 ```
 
-## 安装gofont字体
+
+## 设置系统
+
+### 设置unity的位置
+参考[将 Ubuntu 16.04 LTS 的 Unity 启动器移动到桌面底部](http://www.linuxidc.com/Linux/2016-03/129359.htm)
+
+从左侧移动感到底部：
+
+    gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+
+恢复到左侧
+
+    gsettings set com.canonical.Unity.Launcher launcher-position Left
+
+### 点击unity启动器图标最小化
+
+    gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
+
+### 配置Dash
+
+“安全和隐私” 》 “搜索”， 打开在线搜索的功能
+
+“安全和隐私” 》 “诊断”，关闭向 Canonical 发送错误报告
+
+### 配置快捷键
+
+[参考文章](https://www.cnblogs.com/sink_cup/archive/2013/04/26/1987901.html)
+
+#### 快速启动终端
+
+```sh
+设置快捷键
+系统设置——》键盘——》快捷键。
+启动器——》启动终端，设成Win + R。
+```
+
+#### 设置显示桌面快捷键
+需要安装`compizconfig-settings-manager`软件
+
+```sh
+sudo apt-get install compizconfig-settings-manager
+ccsm
+
+ccsm——》桌面——》Ubuntu Unity Plugin。
+
+General——》“Show Desktop”——》设置成“win + d”。
+```
+
+### Ubuntu 切换中文目录或英文目录切换
+
+* 切换为英文：
+
+```sh
+export LANG=en_US
+xdg-user-dirs-gtk-update
+echo 选 update
+```
+
+* 切换为中文：
+
+```sh
+export LANG=zh_CN.UTF-8
+xdg-user-dirs-gtk-update
+echo 选“不要再提醒”和“保持原来的名称”
+```
+
+`该配置需要重启生效`
+
+### ssh忽略known_hosts
+
+```sh
+mkdir -p ~/.ssh
+echo -e "StrictHostKeyChecking no\nUserKnownHostsFile /dev/null" > ~/.ssh/config
+```
+
+### 安装gofont字体
 
 从github下载gofont, `git clone https://github.com/golang/image.git`, 拷贝`font/gofont/ttfs/`下面的字体到系统字体中：
 
@@ -91,40 +166,6 @@ sudo fc-cache -f -v
 ```
 
 接着注销ubuntu，再次登录就可以使用该go字体了。
-
-## 安装开发工具
-
-* [安装激活goland2017.3版本](2017-12-05-active-goland-2017.3.md)
-* [安装LiteIDE](https://golangtc.com/download/liteide)
-
-```sh
-    tar jxvf liteidex32.1.linux64-qt4.tar.bz2
-    cd liteide
-    编辑liteide.desktop,根据自己的路径修改exec和icon配置
-    然后拷贝该配置到$HOME/.local/share/applications下
-    cd $HOME/liteide/bin/
-    启动liteide
-    并锁定到启动器上即可。
-```
-
-* [安装vscode指引](https://code.visualstudio.com/docs/setup/linux)
-* [安装atom](http://www.linuxidc.com/Linux/2014-05/101501.htm)
-
-```sh
-    sudo add-apt-repository ppa:webupd8team/atom
-    sudo apt-get update
-    sudo apt-get install atom
-```
-
-## 安装xmind
-
-* [下载xmind](http://www.xmind.net/download/linux/)
-* [安装xmind](http://blog.csdn.net/faryang/article/details/70238326)
-
-## 安装FoxitReader
-
-* [下载FoxitReader x64版本](http://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/linux/2.x/2.4/en_us/FoxitReader2.4.1.0609_Server_x64_enu_Setup.run.tar.gz)
-* [安装FoxitReader](https://www.cnblogs.com/EasonJim/p/7231936.html)
 
 ## 安装有道字典
 
@@ -217,6 +258,97 @@ sudo fc-cache -f -v
   您希望继续执行吗？ [Y/n] y
 ```
 
+## 安装输入法
+
+### 搜狗输入发
+
+参照[Ubuntu 16.04安装sogou 拼音输入法](http://blog.csdn.net/ljheee/article/details/52966456)和[Ubuntu16.04常用软件](http://blog.csdn.net/bt8023cpt/article/details/53997607)
+
+下载[搜狗输入法](http://pinyin.sogou.com/)
+
+```bash
+$ cd download/
+$ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
+$ sudo apt-get install -f
+$ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
+```
+
+## 安装播放器
+
+### 网易云音乐
+
+下载[网易云音乐](http://music.163.com/#/download)
+
+```sh
+
+```
+
+## 安装开发工具
+
+* [安装激活goland2017.3版本](2017-12-05-active-goland-2017.3.md)
+* [安装LiteIDE](https://golangtc.com/download/liteide)
+
+```sh
+    tar jxvf liteidex32.1.linux64-qt4.tar.bz2
+    cd liteide
+    编辑liteide.desktop,根据自己的路径修改exec和icon配置
+    然后拷贝该配置到$HOME/.local/share/applications下
+    cd $HOME/liteide/bin/
+    启动liteide
+    并锁定到启动器上即可。
+```
+
+* [安装vscode指引](https://code.visualstudio.com/docs/setup/linux)
+* [安装atom](http://www.linuxidc.com/Linux/2014-05/101501.htm)
+
+```sh
+    sudo add-apt-repository ppa:webupd8team/atom
+    sudo apt-get update
+    sudo apt-get install atom
+```
+
+## 安装xmind
+
+* [下载xmind](http://www.xmind.net/download/linux/)
+* [安装xmind](http://blog.csdn.net/faryang/article/details/70238326)
+
+## 安装FoxitReader
+
+* [下载FoxitReader x64版本](http://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/linux/2.x/2.4/en_us/FoxitReader2.4.1.0609_Server_x64_enu_Setup.run.tar.gz)
+* [安装FoxitReader](https://www.cnblogs.com/EasonJim/p/7231936.html)
+
+## 安装WPS
+
+* 下载[WPS软件包](http://linux.wps.cn/)
+* 下载[WPS依赖的字体](../../packages/wps_symbol_fonts.zip)(违删)
+* 安装字体方法参照`安装gofont操作`
+
+## 图形软件
+
+### 画图工具
+#### Dia
+
+在软件仓库里找`dia`或者使用：
+
+```bash
+sudo apt-get install dia
+```
+
+#### kolourpaint
+
+```bash
+sudo apt-get install  kolourpaint4
+```
+
+#### shutter
+
+```bash
+sudo apt-get install shutter
+```
+
+
+
+
 ## 其他操作
 
 * [微信&QQ工具](http://blog.csdn.net/zhangrelay/article/details/52398037)
@@ -236,5 +368,5 @@ $ sudo apt-get install dconf-tools
     exec-arg -e
 ```
 
-* [Ubuntu 16.04安装sogou 拼音输入法](http://blog.csdn.net/ljheee/article/details/52966456)
+*
 *

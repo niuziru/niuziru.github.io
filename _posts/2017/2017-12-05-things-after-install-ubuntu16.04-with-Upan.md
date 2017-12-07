@@ -116,6 +116,16 @@ sudo fc-cache -f -v
     sudo apt-get install atom
 ```
 
+## 安装xmind
+
+* [下载xmind](http://www.xmind.net/download/linux/)
+* [安装xmind](http://blog.csdn.net/faryang/article/details/70238326)
+
+## 安装FoxitReader
+
+* [下载FoxitReader x64版本](http://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/linux/2.x/2.4/en_us/FoxitReader2.4.1.0609_Server_x64_enu_Setup.run.tar.gz)
+* [安装FoxitReader](https://www.cnblogs.com/EasonJim/p/7231936.html)
+
 ## 安装有道字典
 
 安装有道词典的[1.0.2版本](http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb)，据说1.1.0版本有依赖问题。暂时不要挑战了。

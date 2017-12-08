@@ -31,7 +31,7 @@ tags:
 
  如果想要做更细致的学习，可以参考[代码覆盖率浅谈](https://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html)
 
- # golang中的测试覆盖率
+# golang中的测试覆盖率
 
 在go语言的测试覆盖率统计时的参数有： cover、covermode、coverpkg多种方式，请看`go test -h`:
 
@@ -112,13 +112,16 @@ covprofile  node.go  start.go  start_test.go  status.go  status_test.go
 zero@zero:~/Gopath/src/github.com/hyperledger/fabric/peer/node$
 ```
 
-## 使用指令`go tool cover -html=covprofile -o coverage.html`生成html文件
+## 使用指令`go tool cover -html=covprofile -o 2017-12-08-coverage-peer.html`生成html文件
 
 ```sh
 zero@zero:~/Gopath/src/github.com/hyperledger/fabric/peer/node$ go tool cover -html=covprofile -o coverage.html
 zero@zero:~/Gopath/src/github.com/hyperledger/fabric/peer/node$ ls
 coverage.html  covprofile  node.go  start.go  start_test.go  status.go  status_test.go
 ```
+## coverage.html的内容
+
+[coverage.html](2017-12-08-coverage-peer.html)
 
 ## covprofile的内容
 
@@ -212,3 +215,4 @@ github.com/hyperledger/fabric/peer/node/status.go:58.2,59.12 2 1
 github.com/hyperledger/fabric/peer/node/status.go:45.16,49.3 3 1
 github.com/hyperledger/fabric/peer/node/status.go:52.16,57.3 4 1
 ```
+

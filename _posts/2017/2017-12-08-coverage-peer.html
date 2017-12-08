@@ -1,0 +1,601 @@
+---
+title: golang覆盖率HTML展示举例
+---
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/hyperledger/fabric/peer/node/node.go (0.0%)</option>
+				
+				<option value="file1">github.com/hyperledger/fabric/peer/node/start.go (67.5%)</option>
+				
+				<option value="file2">github.com/hyperledger/fabric/peer/node/status.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">/*
+Copyright IBM Corp. 2016 All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+                 http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+package node
+
+import (
+        "fmt"
+
+        "github.com/hyperledger/fabric/common/flogging"
+        "github.com/spf13/cobra"
+)
+
+const (
+        nodeFuncName = "node"
+        shortDes     = "Operate a peer node: start|status."
+        longDes      = "Operate a peer node: start|status."
+)
+
+var logger = flogging.MustGetLogger("nodeCmd")
+
+// Cmd returns the cobra command for Node
+func Cmd() *cobra.Command <span class="cov0" title="0">{
+        nodeCmd.AddCommand(startCmd())
+        nodeCmd.AddCommand(statusCmd())
+
+        return nodeCmd
+}</span>
+
+var nodeCmd = &amp;cobra.Command{
+        Use:   nodeFuncName,
+        Short: fmt.Sprint(shortDes),
+        Long:  fmt.Sprint(longDes),
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">/*
+Copyright IBM Corp. All Rights Reserved.
+
+SPDX-License-Identifier: Apache-2.0
+*/
+
+package node
+
+import (
+        "fmt"
+        "io/ioutil"
+        "net"
+        "net/http"
+        "os"
+        "os/signal"
+        "path/filepath"
+        "strconv"
+        "syscall"
+        "time"
+
+        "github.com/hyperledger/fabric/common/flogging"
+        "github.com/hyperledger/fabric/common/localmsp"
+        "github.com/hyperledger/fabric/core"
+        "github.com/hyperledger/fabric/core/chaincode"
+        "github.com/hyperledger/fabric/core/comm"
+        "github.com/hyperledger/fabric/core/common/ccprovider"
+        "github.com/hyperledger/fabric/core/config"
+        "github.com/hyperledger/fabric/core/endorser"
+        "github.com/hyperledger/fabric/core/ledger/ledgermgmt"
+        "github.com/hyperledger/fabric/core/peer"
+        "github.com/hyperledger/fabric/core/scc"
+        "github.com/hyperledger/fabric/events/producer"
+        "github.com/hyperledger/fabric/gossip/service"
+        "github.com/hyperledger/fabric/msp/mgmt"
+        "github.com/hyperledger/fabric/peer/common"
+        peergossip "github.com/hyperledger/fabric/peer/gossip"
+        "github.com/hyperledger/fabric/peer/version"
+        pb "github.com/hyperledger/fabric/protos/peer"
+        "github.com/spf13/cobra"
+        "github.com/spf13/viper"
+        "google.golang.org/grpc"
+        "google.golang.org/grpc/grpclog"
+)
+
+//function used by chaincode support
+type ccEndpointFunc func() (*pb.PeerEndpoint, error)
+
+var chaincodeDevMode bool
+var peerDefaultChain bool
+var orderingEndpoint string
+
+// XXXDefaultChannelMSPID should not be defined in production code
+// It should only be referenced in tests.  However, it is necessary
+// to support the 'default chain' setup so temporarily adding until
+// this concept can be removed to testing scenarios only
+const XXXDefaultChannelMSPID = "DEFAULT"
+
+func startCmd() *cobra.Command <span class="cov8" title="1">{
+        // Set the flags on the node start command.
+        flags := nodeStartCmd.Flags()
+        flags.BoolVarP(&amp;chaincodeDevMode, "peer-chaincodedev", "", false,
+                "Whether peer in chaincode development mode")
+        flags.BoolVarP(&amp;peerDefaultChain, "peer-defaultchain", "", false,
+                "Whether to start peer with chain testchainid")
+        flags.StringVarP(&amp;orderingEndpoint, "orderer", "o", "orderer:7050", "Ordering service endpoint")
+
+        return nodeStartCmd
+}</span>
+
+var nodeStartCmd = &amp;cobra.Command{
+        Use:   "start",
+        Short: "Starts the node.",
+        Long:  `Starts a node that interacts with the network.`,
+        RunE: func(cmd *cobra.Command, args []string) error <span class="cov8" title="1">{
+                return serve(args)
+        }</span>,
+}
+
+//start chaincodes
+func initSysCCs() <span class="cov8" title="1">{
+        //deploy system chaincodes
+        scc.DeploySysCCs("")
+        logger.Infof("Deployed system chaincodess")
+}</span>
+
+func serve(args []string) error <span class="cov8" title="1">{
+        logger.Infof("Starting %s", version.GetInfo())
+        ledgermgmt.Initialize()
+        // Parameter overrides must be processed before any parameters are
+        // cached. Failures to cache cause the server to terminate immediately.
+        if chaincodeDevMode </span><span class="cov0" title="0">{
+                logger.Info("Running in chaincode development mode")
+                logger.Info("Disable loading validity system chaincode")
+
+                viper.Set("chaincode.mode", chaincode.DevModeUserRunsChaincode)
+
+        }</span>
+
+        <span class="cov8" title="1">if err := peer.CacheConfiguration(); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov8" title="1">peerEndpoint, err := peer.GetPeerEndpoint()
+        if err != nil </span><span class="cov0" title="0">{
+                err = fmt.Errorf("Failed to get Peer Endpoint: %s", err)
+                return err
+        }</span>
+
+        <span class="cov8" title="1">listenAddr := viper.GetString("peer.listenAddress")
+
+        secureConfig, err := peer.GetSecureConfig()
+        if err != nil </span><span class="cov0" title="0">{
+                logger.Fatalf("Error loading secure config for peer (%s)", err)
+        }</span>
+        <span class="cov8" title="1">peerServer, err := peer.CreatePeerServer(listenAddr, secureConfig)
+        if err != nil </span><span class="cov0" title="0">{
+                logger.Fatalf("Failed to create peer server (%s)", err)
+        }</span>
+
+        <span class="cov8" title="1">if secureConfig.UseTLS </span><span class="cov0" title="0">{
+                logger.Info("Starting peer with TLS enabled")
+                // set up CA support
+                caSupport := comm.GetCASupport()
+                caSupport.ServerRootCAs = secureConfig.ServerRootCAs
+        }</span>
+
+        //TODO - do we need different SSL material for events ?
+        <span class="cov8" title="1">ehubGrpcServer, err := createEventHubServer(secureConfig)
+        if err != nil </span><span class="cov0" title="0">{
+                grpclog.Fatalf("Failed to create ehub server: %v", err)
+        }</span>
+
+        // enable the cache of chaincode info
+        <span class="cov8" title="1">ccprovider.EnableCCInfoCache()
+
+        ccSrv, ccEpFunc := createChaincodeServer(peerServer, listenAddr)
+        registerChaincodeSupport(ccSrv.Server(), ccEpFunc)
+        go ccSrv.Start()
+
+        logger.Debugf("Running peer")
+
+        // Register the Admin server
+        pb.RegisterAdminServer(peerServer.Server(), core.NewAdminServer())
+
+        // Register the Endorser server
+        serverEndorser := endorser.NewEndorserServer()
+        pb.RegisterEndorserServer(peerServer.Server(), serverEndorser)
+
+        // Initialize gossip component
+        bootstrap := viper.GetStringSlice("peer.gossip.bootstrap")
+
+        serializedIdentity, err := mgmt.GetLocalSigningIdentityOrPanic().Serialize()
+        if err != nil </span><span class="cov0" title="0">{
+                logger.Panicf("Failed serializing self identity: %v", err)
+        }</span>
+
+        <span class="cov8" title="1">messageCryptoService := peergossip.NewMCS(
+                peer.NewChannelPolicyManagerGetter(),
+                localmsp.NewSigner(),
+                mgmt.NewDeserializersManager())
+        secAdv := peergossip.NewSecurityAdvisor(mgmt.NewDeserializersManager())
+
+        // callback function for secure dial options for gossip service
+        secureDialOpts := func() []grpc.DialOption </span><span class="cov0" title="0">{
+                var dialOpts []grpc.DialOption
+                // set max send/recv msg sizes
+                dialOpts = append(dialOpts, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(comm.MaxRecvMsgSize()),
+                        grpc.MaxCallSendMsgSize(comm.MaxSendMsgSize())))
+                // set the keepalive options
+                dialOpts = append(dialOpts, comm.ClientKeepaliveOptions()...)
+
+                if comm.TLSEnabled() </span><span class="cov0" title="0">{
+                        tlsCert := peerServer.ServerCertificate()
+                        dialOpts = append(dialOpts, grpc.WithTransportCredentials(comm.GetCASupport().GetPeerCredentials(tlsCert)))
+                }</span><span class="cov0" title="0"> else {
+                        dialOpts = append(dialOpts, grpc.WithInsecure())
+                }</span>
+                <span class="cov0" title="0">return dialOpts</span>
+        }
+        <span class="cov8" title="1">err = service.InitGossipService(serializedIdentity, peerEndpoint.Address, peerServer.Server(),
+                messageCryptoService, secAdv, secureDialOpts, bootstrap...)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov8" title="1">defer service.GetGossipService().Stop()
+
+        //initialize system chaincodes
+        initSysCCs()
+
+        //this brings up all the chains (including testchainid)
+        peer.Initialize(func(cid string) </span><span class="cov0" title="0">{
+                logger.Debugf("Deploying system CC, for chain &lt;%s&gt;", cid)
+                scc.DeploySysCCs(cid)
+        }</span>)
+
+        <span class="cov8" title="1">logger.Infof("Starting peer with ID=[%s], network ID=[%s], address=[%s]",
+                peerEndpoint.Id, viper.GetString("peer.networkId"), peerEndpoint.Address)
+
+        // Start the grpc server. Done in a goroutine so we can deploy the
+        // genesis block if needed.
+        serve := make(chan error)
+
+        sigs := make(chan os.Signal, 1)
+        signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+        go func() </span><span class="cov8" title="1">{
+                sig := &lt;-sigs
+                logger.Debugf("sig: %s", sig)
+                serve &lt;- nil
+        }</span>()
+
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+                var grpcErr error
+                if grpcErr = peerServer.Start(); grpcErr != nil </span><span class="cov0" title="0">{
+                        grpcErr = fmt.Errorf("grpc server exited with error: %s", grpcErr)
+                }</span><span class="cov0" title="0"> else {
+                        logger.Info("peer server exited")
+                }</span>
+                <span class="cov0" title="0">serve &lt;- grpcErr</span>
+        }()
+
+        <span class="cov8" title="1">if err := writePid(config.GetPath("peer.fileSystemPath")+"/peer.pid", os.Getpid()); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        // Start the event hub server
+        <span class="cov8" title="1">if ehubGrpcServer != nil </span><span class="cov8" title="1">{
+                go ehubGrpcServer.Start()
+        }</span>
+
+        // Start profiling http endpoint if enabled
+        <span class="cov8" title="1">if viper.GetBool("peer.profile.enabled") </span><span class="cov0" title="0">{
+                go func() </span><span class="cov0" title="0">{
+                        profileListenAddress := viper.GetString("peer.profile.listenAddress")
+                        logger.Infof("Starting profiling server with listenAddress = %s", profileListenAddress)
+                        if profileErr := http.ListenAndServe(profileListenAddress, nil); profileErr != nil </span><span class="cov0" title="0">{
+                                logger.Errorf("Error starting profiler: %s", profileErr)
+                        }</span>
+                }()
+        }
+
+        <span class="cov8" title="1">logger.Infof("Started peer with ID=[%s], network ID=[%s], address=[%s]",
+                peerEndpoint.Id, viper.GetString("peer.networkId"), peerEndpoint.Address)
+
+        // set the logging level for specific modules defined via environment
+        // variables or core.yaml
+        overrideLogModules := []string{"msp", "gossip", "ledger", "cauthdsl", "policies", "grpc"}
+        for _, module := range overrideLogModules </span><span class="cov8" title="1">{
+                err = common.SetLogLevelFromViper(module)
+                if err != nil </span><span class="cov0" title="0">{
+                        logger.Warningf("Error setting log level for module '%s': %s", module, err.Error())
+                }</span>
+        }
+
+        <span class="cov8" title="1">flogging.SetPeerStartupModulesMap()
+
+        // Block until grpc server exits
+        return &lt;-serve</span>
+}
+
+//create a CC listener using peer.chaincodeListenAddress (and if that's not set use peer.peerAddress)
+func createChaincodeServer(peerServer comm.GRPCServer, peerListenAddress string) (comm.GRPCServer, ccEndpointFunc) <span class="cov8" title="1">{
+        cclistenAddress := viper.GetString("peer.chaincodeListenAddress")
+
+        var srv comm.GRPCServer
+        var ccEpFunc ccEndpointFunc
+
+        //use the chaincode address endpoint function..
+        //three cases
+        // -  peer.chaincodeListenAddress not specied (use peer's server)
+        // -  peer.chaincodeListenAddress identical to peer.listenAddress (use peer's server)
+        // -  peer.chaincodeListenAddress different and specified (create chaincode server)
+        if cclistenAddress == "" </span><span class="cov0" title="0">{
+                //...but log a warning
+                logger.Warningf("peer.chaincodeListenAddress is not set, use peer.listenAddress %s", peerListenAddress)
+
+                //we are using peer address, use peer endpoint
+                ccEpFunc = peer.GetPeerEndpoint
+                srv = peerServer
+        }</span><span class="cov8" title="1"> else if cclistenAddress == peerListenAddress </span><span class="cov0" title="0">{
+                //using peer's endpoint...log a  warning
+                logger.Warningf("peer.chaincodeListenAddress is identical to peer.listenAddress %s", cclistenAddress)
+
+                //we are using peer address, use peer endpoint
+                ccEpFunc = peer.GetPeerEndpoint
+                srv = peerServer
+        }</span><span class="cov8" title="1"> else {
+                config, err := peer.GetSecureConfig()
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+
+                <span class="cov8" title="1">srv, err = comm.NewGRPCServer(cclistenAddress, config)
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">ccEpFunc = getChaincodeAddressEndpoint</span>
+        }
+
+        <span class="cov8" title="1">return srv, ccEpFunc</span>
+}
+
+//NOTE - when we implment JOIN we will no longer pass the chainID as param
+//The chaincode support will come up without registering system chaincodes
+//which will be registered only during join phase.
+func registerChaincodeSupport(grpcServer *grpc.Server, ccEpFunc ccEndpointFunc) <span class="cov8" title="1">{
+        //get user mode
+        userRunsCC := chaincode.IsDevMode()
+
+        //get chaincode startup timeout
+        ccStartupTimeout := viper.GetDuration("chaincode.startuptimeout")
+        if ccStartupTimeout &lt; time.Duration(5)*time.Second </span><span class="cov8" title="1">{
+                logger.Warningf("Invalid chaincode startup timeout value %s (should be at least 5s); defaulting to 5s", ccStartupTimeout)
+                ccStartupTimeout = time.Duration(5) * time.Second
+        }</span><span class="cov0" title="0"> else {
+                logger.Debugf("Chaincode startup timeout value set to %s", ccStartupTimeout)
+        }</span>
+
+        <span class="cov8" title="1">ccSrv := chaincode.NewChaincodeSupport(ccEpFunc, userRunsCC, ccStartupTimeout)
+
+        //Now that chaincode is initialized, register all system chaincodes.
+        scc.RegisterSysCCs()
+
+        pb.RegisterChaincodeSupportServer(grpcServer, ccSrv)</span>
+}
+
+func getChaincodeAddressEndpoint() (*pb.PeerEndpoint, error) <span class="cov8" title="1">{
+        //need this for the ID to create chaincode endpoint
+        peerEndpoint, err := peer.GetPeerEndpoint()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">ccendpoint := viper.GetString("peer.chaincodeListenAddress")
+        if ccendpoint == "" </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("peer.chaincodeListenAddress not specified")
+        }</span>
+
+        <span class="cov8" title="1">if _, _, err = net.SplitHostPort(ccendpoint); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return &amp;pb.PeerEndpoint{
+                Id:      peerEndpoint.Id,
+                Address: ccendpoint,
+        }, nil</span>
+}
+
+func createEventHubServer(secureConfig comm.SecureServerConfig) (comm.GRPCServer, error) <span class="cov8" title="1">{
+        var lis net.Listener
+        var err error
+        lis, err = net.Listen("tcp", viper.GetString("peer.events.address"))
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("failed to listen: %v", err)
+        }</span>
+
+        <span class="cov8" title="1">grpcServer, err := comm.NewGRPCServerFromListener(lis, secureConfig)
+        if err != nil </span><span class="cov0" title="0">{
+                logger.Errorf("Failed to return new GRPC server: %s", err)
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">ehServer := producer.NewEventsServer(
+                uint(viper.GetInt("peer.events.buffersize")),
+                viper.GetDuration("peer.events.timeout"))
+
+        pb.RegisterEventsServer(grpcServer.Server(), ehServer)
+        return grpcServer, nil</span>
+}
+
+func writePid(fileName string, pid int) error <span class="cov8" title="1">{
+        err := os.MkdirAll(filepath.Dir(fileName), 0755)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov8" title="1">buf := strconv.Itoa(pid)
+        if err = ioutil.WriteFile(fileName, []byte(buf), 0644); err != nil </span><span class="cov8" title="1">{
+                logger.Errorf("Cannot write pid to %s (err:%s)", fileName, err)
+                return err
+        }</span>
+
+        <span class="cov8" title="1">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">/*
+Copyright IBM Corp. 2016 All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+                 http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+package node
+
+import (
+        "fmt"
+
+        "github.com/golang/protobuf/ptypes/empty"
+        "github.com/hyperledger/fabric/peer/common"
+        pb "github.com/hyperledger/fabric/protos/peer"
+        "github.com/spf13/cobra"
+        "golang.org/x/net/context"
+)
+
+func statusCmd() *cobra.Command <span class="cov8" title="1">{
+        return nodeStatusCmd
+}</span>
+
+var nodeStatusCmd = &amp;cobra.Command{
+        Use:   "status",
+        Short: "Returns status of the node.",
+        Long:  `Returns the status of the running node.`,
+        RunE: func(cmd *cobra.Command, args []string) error <span class="cov8" title="1">{
+                return status()
+        }</span>,
+}
+
+func status() (err error) <span class="cov8" title="1">{
+
+        adminClient, err := common.GetAdminClient()
+        if err != nil </span><span class="cov8" title="1">{
+                logger.Warningf("%s", err)
+                fmt.Println(&amp;pb.ServerStatus{Status: pb.ServerStatus_UNKNOWN})
+                return err
+        }</span>
+
+        <span class="cov8" title="1">status, err := adminClient.GetStatus(context.Background(), &amp;empty.Empty{})
+        if err != nil </span><span class="cov8" title="1">{
+                logger.Infof("Error trying to get status from local peer: %s", err)
+                err = fmt.Errorf("Error trying to connect to local peer: %s", err)
+                fmt.Println(&amp;pb.ServerStatus{Status: pb.ServerStatus_UNKNOWN})
+                return err
+        }</span>
+        <span class="cov8" title="1">fmt.Println(status)
+        return nil</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

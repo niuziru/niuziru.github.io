@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 第一章 可怕的真相：个性太直会毁了你的一生
+title: 第一章 可怕的真相：个性太直会毁了你的一生(1)
 categories:
 - Life
 tags:

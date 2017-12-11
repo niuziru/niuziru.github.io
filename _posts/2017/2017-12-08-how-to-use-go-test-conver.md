@@ -121,7 +121,7 @@ coverage.html  covprofile  node.go  start.go  start_test.go  status.go  status_t
 ```
 ## coverage.html的内容
 
-[coverage.html](https://github.com/neujie/neujie.github.io/blob/master/packages/2017-12-08-coverage-peer.html)
+[coverage.html](/packages/2017-12-08-coverage-peer.html)
 
 ## covprofile的内容
 

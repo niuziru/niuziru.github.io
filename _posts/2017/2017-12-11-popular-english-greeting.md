@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 流行英语口语2000句(1)
+title: 流行英语口语2000句(Greeting)
 categories:
 - 学习
 tags:

@@ -183,6 +183,8 @@ func BenchmarkGetFieldValue(b *testing.B) {
 
 go test是go语言自带的测试工具，其中包含的是两类，单元测试和性能测试
 
+## 4.1、基本指令说明
+
 通过go help test可以看到go test的使用说明：
 格式形如：
 
@@ -228,6 +230,16 @@ go test是go语言自带的测试工具，其中包含的是两类，单元测�
     -test.cpu 1,2,4 : 程序运行在哪些CPU上面，使用二进制的1所在位代表，和nginx的nginx_worker_cpu_affinity是一个道理
 
     -test.short : 将那些运行时间较长的测试用例运行时间缩短
+
+
+## 4.2 常用指令说明
+
+* 1) 测试单个文件，一定要带上被测试的原文件
+    go test -v  wechat_test.go wechat.go
+
+* 2) 测试单个函数方法
+    go test -v -test.run TestRefreshAccessToken
+
 
 # 5、扩展阅读
 

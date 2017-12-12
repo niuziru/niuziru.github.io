@@ -422,10 +422,133 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
 /dev/sda3 /mnt/E ntfs utf8,umask=0
 ```
 
+## 12、安装mac主题
+
+### 添加macbuntu资源
+
+    $sudo add-apt-repository ppa:noobslab/macbuntu
+
+### 安装mac窗口主题
+
+    $sudo apt-get install  macbuntu-os-ithemes-lts-v7
+
+### 安装mac图标主题
+    $sudo apt-get install  macbuntu-os-icons-lts-v7
+
+### 若想卸载，卸载指令
+
+    cd /usr/share/icons/mac-cursors && sudo ./uninstall-mac-cursors.sh
+    sudo apt-get remove macbuntu-os-icons-lts-v7 macbuntu-os-ithemes-lts-v7
+
+### 安装 Slingscold（替代Launchpad）
+
+    sudo add-apt-repository ppa:noobslab/macbuntu
+    sudo apt-get update
+    sudo apt-get install slingscold
+
+### 安装Albert Spotlight (替代 Mac Spotlight)
+
+    sudo add-apt-repository ppa:noobslab/macbuntu
+    sudo apt-get update
+    sudo apt-get install albert
+
+### 安装 Plank Dock
+
+    sudo apt-get install plank
+
+### 安装 Plank 主题：
+
+    sudo add-apt-repository ppa:noobslab/macbuntu
+    sudo apt-get update
+    sudo apt-get install macbuntu-os-plank-theme-lts-v7
+
+    安装 Ctrl + Right Click 选择主题。
+
+### 卸载主题命令：
+
+    sudo apt-get autoremove plank macbuntu-os-plank-theme-lts-v7
+
+### 将面板上的 ‘Ubuntu Desktop’ 文字替换 ‘Mac’
+
+    cd && wget -O Mac.po http://drive.noobslab.com/data/Mac/change-name-on-panel/mac.po
+    cd /usr/share/locale/en/LC_MESSAGES; sudo msgfmt -o unity.mo ~/Mac.po;rm ~/Mac.po;cd
+
+    语言上如果是其他非英语语言，将 /en 做相应修改：
+
+
+
+### 恢复原来的桌面文字命令：
+
+    cd && wget -O Ubuntu.po http://drive.noobslab.com/data/Mac/change-name-on-panel/ubuntu.po
+    cd /usr/share/locale/en/LC_MESSAGES; sudo msgfmt -o unity.mo ~/Ubuntu.po;rm ~/Ubuntu.po;cd
+
+### 启动器上苹果Logo
+#### 命令：
+    wget -O launcher_bfb.png http://drive.noobslab.com/data/Mac/launcher-logo/apple/launcher_bfb.png
+    sudo mv launcher_bfb.png /usr/share/unity/icons/
+
+#### 恢复图标：
+
+    wget -O launcher_bfb.png http://drive.noobslab.com/data/Mac/launcher-logo/ubuntu/launcher_bfb.png
+    sudo mv launcher_bfb.png /usr/share/unity/icons/
+
+
+
+### 安装unity-tweak-tools配置主题工具
+    $sudo apt-get install  unity-tweak-tools
+    $sudo apt-get install gnome-tweak-tool
+
+### 配置 Mac 字体：
+
+    安装字体命令：
+    wget -O mac-fonts.zip http://drive.noobslab.com/data/Mac/macfonts.zip
+    sudo unzip mac-fonts.zip -d /usr/share/fonts; rm mac-fonts.zip
+    sudo fc-cache -f -v
+
+    使用 Unity-Tweak-Tool, Gnome-Tweak-Tool 或 Ubuntu Tweak 软件更换字体。
+
+
+### 修改启动界面：
+
+    sudo add-apt-repository ppa:noobslab/themes
+    sudo apt-get update
+    sudo apt-get install macbuntu-os-bscreen-lts-v7
+
+    如果你喜欢 MBuntu 启动界面，你想恢复到 Ubuntu ，使用命令：
+    sudo apt-get autoremove macbuntu-os-bscreen-lts-v7
+
+### 登陆迎宾界面：
+
+#### 安装命令：
+注意安装这个东东有风险，如果你不是在意，建议不安装，安装这个仅仅适合于 Ubuntu Unity – Lightdm 和 Ubuntu Gnome – gdm，其他桌面环境有风险。
+
+    sudo add-apt-repository ppa:noobslab/themes
+    sudo apt-get update
+    sudo apt-get install macbuntu-os-lightdm-lts-v7
+
+#### 卸载恢复命令：
+
+    sudo apt-get remove macbuntu-os-lightdm-lts-v7
+
+
+
 ## 90、其他操作
 
+### 90.1、软件卸载
+
+#### 卸载ubutnu自带的vi
+
+    sudo apt-get remove vim-common
+
+#### 自动卸载一些软件包，比如内核模块
+
+    sudo apt autoremove
+
+### 90.2、通讯工具
 * [微信&QQ工具](http://blog.csdn.net/zhangrelay/article/details/52398037)
 * [linux版本的wechat](http://blog.csdn.net/minione_2016/article/details/53289430?locationNum=4&fps=1)
+
+### 90.3、其他链接
 * [Ubuntu 16.04 LTS安装好需要设置的15件事](http://www.linuxidc.com/Linux/2016-04/130519.htm)
 * [Ubuntu 安装terminator 后更改默认终端设置](http://blog.csdn.net/qq_20336817/article/details/46122849)
 
@@ -440,4 +563,3 @@ $ sudo apt-get install dconf-tools
     exec  x-terminal-emulator
     exec-arg -e
 ```
-

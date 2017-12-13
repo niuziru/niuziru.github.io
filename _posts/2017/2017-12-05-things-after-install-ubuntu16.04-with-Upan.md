@@ -302,6 +302,17 @@ $ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu.deb
 
 * [安装vscode指引](https://code.visualstudio.com/docs/setup/linux)
 * [安装atom](http://www.linuxidc.com/Linux/2014-05/101501.htm)
+* [安装typora](https://www.typora.io/#linux)
+
+```sh
+    # optional, but recommended
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+    # add Typora's repository
+    sudo add-apt-repository 'deb http://typora.io linux/'
+    sudo apt-get update
+    # install typora
+    sudo apt-get install typora
+```
 
 ```sh
     sudo add-apt-repository ppa:webupd8team/atom

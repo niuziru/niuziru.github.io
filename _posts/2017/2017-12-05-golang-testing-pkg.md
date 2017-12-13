@@ -235,11 +235,18 @@ go test是go语言自带的测试工具，其中包含的是两类，单元测�
 ## 4.2 常用指令说明
 
 * 1) 测试单个文件，一定要带上被测试的原文件
+
     go test -v  wechat_test.go wechat.go
 
 * 2) 测试单个函数方法
+
     go test -v -test.run TestRefreshAccessToken
 
+* 3) 选择性执行
+
+    go test -v func/test
+    go test -v -run TestFunc func/test
+    go test -v -run ^TestFunc$ func/test
 
 # 5、扩展阅读
 

@@ -359,6 +359,25 @@ sudo apt-get install  kolourpaint4
 sudo apt-get install shutter
 ```
 
+#### 10.1.4、StarUML
+
+* 下载StarUML:
+
+  [官网地址libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb](https://launchpad.net/~ubuntu-security-proposed/+archive/ubuntu/ppa/+build/10628783)
+
+* 安装StarUML：
+  * 下载并安装依赖库[libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb](https://launchpad.net/~ubuntu-security-proposed/+archive/ubuntu/ppa/+build/10628783)
+
+```sh
+  zero@zero ~/Downloads> sudo dpkg -i libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb
+```
+
+  * 安装StarUML
+
+```sh
+    zero@zero ~/Downloads> sudo dpkg -i StarUML-v2.8.0-64-bit.deb
+```
+
 
 ## 11、挂在其他磁盘
 

@@ -50,7 +50,17 @@ zero@zero ~> curl http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 }
 ```
 
-# 启动ETCD
+# 下载启动ETCD
+
+## 下载ETCD
+
+* `sudo docker pull quay.io/coreos/etcd`
+
+* `sudo docker pull quay.io/coreos/etcd:v3.1.9`
+
+
+## `sudo docker run -d -p 2379:2379 -p 2380:2380 -name etcd quay.io/coreos/etcd:v3.2.0`
+
 
 * V2版本端口: `3379`
 * V3版本端口: `2379`
@@ -60,7 +70,7 @@ zero@zero ~> curl http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 ## V2
 
 ```sh
-zero@zero ~> curl http://127.0.0.1:2380/version
+zero@zero ~> curl http://127.0.0.1:3379/version
 etcd 2.0.10⏎
 ```
 
@@ -83,7 +93,7 @@ zero@zero ~> curl http://127.0.0.1:3379/v2/keys
 ## V3
 
 ```sh
-zero@zero ~> curl http://127.0.0.1:3379/v2/keys
+zero@zero ~> curl http://127.0.0.1:2379/v2/keys
 {"action":"get","node":{"dir":true}}
 ```
 

@@ -214,14 +214,7 @@ zero@zero ~> curl -X POST http://127.0.0.1:2379/v2/keys/seqvar -d value="seq1"
 ## 查询结果
 
 ```sh
-zero@zero ~> curl -X POST http://127.0.0.1:2379/v2/keys/seqvar -d value="seq1"
-{"action":"create","node":{"key":"/seqvar/00000000000000000017","value":"seq1","modifiedIndex":17,"createdIndex":17}}
-zero@zero ~> curl -X POST http://127.0.0.1:2379/v2/keys/seqvar -d value="seq1"
-{"action":"create","node":{"key":"/seqvar/00000000000000000018","value":"seq1","modifiedIndex":18,"createdIndex":18}}
-zero@zero ~> curl -X POST http://127.0.0.1:2379/v2/keys/seqvar -d value="seq1"
-{"action":"create","node":{"key":"/seqvar/00000000000000000019","value":"seq1","modifiedIndex":19,"createdIndex":19}}
-zero@zero ~> curl -X POST http://127.0.0.1:2379/v2/keys/seqvar -d value="seq1"
-{"action":"create","node":{"key":"/seqvar/00000000000000000020","value":"seq1","modifiedIndex":20,"createdIndex":20}}
+curl -X GET http://127.0.0.1:2379/v2/keys/seqvar
 ```
 
 * 格式化应答

@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: 我的小宝贝——izero：粘人啊，特别粘他妈妈，难啊
+title: 我的小宝贝——izero:粘人啊，特别粘他妈妈，难啊
 categories:
 - Life
 tags:

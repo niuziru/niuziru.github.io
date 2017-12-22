@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 我的小宝贝——izero：大医院就是大医院，一下看到病因，更吓人了
+title: 我的小宝贝——izero:大医院就是大医院，一下看到病因，更吓人了
 categories:
 - Life
 tags:

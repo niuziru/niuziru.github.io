@@ -13,7 +13,7 @@ tags:
 Unified Modeling Language (UML)又称统一建模语言或标准建模语言，是始于1997年一个OMG标准，它是一个支持模型化和软件系统开发的图形化语言，为软件开发的所有阶段提供模型化和可视化支持，包括由需求分析到规格，到构造和配置。
 
 面向对象的分析与设计(OOA&D，OOAD)方法的发展在80年代末至90年代中出现了一个高潮，而UML就是这个高潮的产物。
-*OMG：对象管理组织(Object Management Group)*
+*OMG:对象管理组织(Object Management Group)*
 
 
 ## UML由3个要素
@@ -35,7 +35,7 @@ Unified Modeling Language (UML)又称统一建模语言或标准建模语言，�
 
 #### 图
 
-UML中有九种建模的图标，即：
+UML中有九种建模的图标，即:
 
 用例图、类图、对象图、顺序图、协作图、状态图、活动图、组件图、配置图
 
@@ -56,7 +56,7 @@ UML中有九种建模的图标，即：
 
 <img src="/images/actorsmultipleno3d.gif" alt="用例图" width="100%" height="100%" />
 
-用例图在三个领域很有作用：
+用例图在三个领域很有作用:
 * 1.决定特征（需求）。当系统已经分析好并且设计成型时，新的用例产生新的需求；
 * 2.客户通讯。使用用例图很容易表示开发者与客户之间的联系；
 * 3.产生测试用例。一个用例的情节可能产生这些情节的一批测试用例。
@@ -66,14 +66,14 @@ UML中有九种建模的图标，即：
 ##### 类图 Class diagram
 类图Class diagram通过显示出系统的类以及这些类之间的关系来表示系统。类图是静态的－它们显示出什么可以产生影响但不会告诉你什么时候产生影响。
 
-下面是一个顾客从零售商处预定商品的模型的类图。中心的类是Order。连接它的是购买货物的Customer和Payment。Payment有三种形式：Cash，Check，或者Credit。订单包括OrderDetails（line item），每个这种类都连着Item。
+下面是一个顾客从零售商处预定商品的模型的类图。中心的类是Order。连接它的是购买货物的Customer和Payment。Payment有三种形式:Cash，Check，或者Credit。订单包括OrderDetails（line item），每个这种类都连着Item。
 
 <img src="/images/classdiagramno3d.gif" alt="用例图" width="100%" height="100%" />
 
 
-UML类的符号是一个被划分成三块的方框：类名，属性，和操作。抽象类的名字，是斜体的。类之间的关系是连接线。
+UML类的符号是一个被划分成三块的方框:类名，属性，和操作。抽象类的名字，是斜体的。类之间的关系是连接线。
 
-类图有三种关系：
+类图有三种关系:
 * 1.关联association－表示两种类的实例间的关系。如果一个类的实例必须要用另一个类的实例才能完成工作时就要用关联。在图中，关联用两个类之间的连线表示；
 * 2.聚合aggregation－当一个类属于一个容器是的一种特殊关系。聚合用一个带菱形的连线，菱形指向具有整体性质的类。在我们的图里，Order是OrderDetails的容器；
 * 3.泛化generalization－一个指向以其他类作为超类的继承连线。泛化关系用一个三角形指向超类。Payment是Cash，Check和Credit的超类。
@@ -130,7 +130,7 @@ UML中实例名带有下划线。只要意思清楚，类或实例名可以在�
 
 <img src="/images/collaborationo3d.gif" alt="用例图" width="100%" height="100%" />
 
-对象角色矩形上标有类或对象名（或者都有）。类名前面有个冒号（：）。
+对象角色矩形上标有类或对象名（或者都有）。类名前面有个冒号（:）。
 
 协作图的每个消息都有一个序列号。顶层消息的数字是1。同一个等级的消息（也就是同一个调用中的消息）有同样的数字前缀，再根据他们出现的顺序增加一个后缀1，2等等。
 
@@ -139,7 +139,7 @@ UML中实例名带有下划线。只要意思清楚，类或实例名可以在�
 对象拥有行为和状态。对象的状态是由对象当前的行动和条件决定的。状态图statechart diagram显示出了对象可能的状态以及由状态改变而导致的转移。
 我们的模型例图建立了一个银行的在线登录系统。登录过程包括输入合法的密码和个人账号，再提交给系统验证信息。
 
-登录系统可以被划分为四种不重叠的状态：Getting SSN, Getting PIN, Validating, 以及 Rejecting。每个状态都有一套完整的转移transitions来决定状态的顺序。
+登录系统可以被划分为四种不重叠的状态:Getting SSN, Getting PIN, Validating, 以及 Rejecting。每个状态都有一套完整的转移transitions来决定状态的顺序。
 
 <img src="/images/statediagno3d.gif" alt="用例图" width="100%" height="100%" />
 

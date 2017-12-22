@@ -17,7 +17,7 @@ Read 将 len(p) 个字节读取到 p 中。它返回读取的字节数 n（0 <= 
 
 调用者应当总在考虑到错误 err 前处理 n > 0 的字节。这样做可以在读取一些字节，以及允许的 EOF 行为后正确地处理 I/O 错误。
 
-`io.EOF 变量的定义：var EOF = errors.New("EOF")，是 error 类型。根据 reader 接口的说明，在 n > 0 且数据被读完了的情况下，返回的 error 有可能是 EOF 也有可能是 nil。`
+`io.EOF 变量的定义:var EOF = errors.New("EOF")，是 error 类型。根据 reader 接口的说明，在 n > 0 且数据被读完了的情况下，返回的 error 有可能是 EOF 也有可能是 nil。`
 
 
 ## 举例
@@ -36,7 +36,7 @@ FOREND:
 		)
 		switch strings.ToLower(ch) {
 		case "1":
-			fmt.Println("请输入不多于9个字符，以回车结束：")
+			fmt.Println("请输入不多于9个字符，以回车结束:")
 			data, err = ReadFrom(os.Stdin, 11)
 		case "2":
 			file, err := os.Open(util.GetProjectRoot() + "/src/chapter01/io/01.txt")
@@ -64,7 +64,7 @@ FOREND:
 		if err != nil {
 			fmt.Println("数据读取失败，可以试试从其他输入源读取！")
 		} else {
-			fmt.Printf("读取到的数据是：%s\n", data)
+			fmt.Printf("读取到的数据是:%s\n", data)
 		}
 	}
 }
@@ -81,7 +81,7 @@ func ReadFrom(reader io.Reader, num int) ([]byte, error) {
 func readerMenu() {
 	fmt.Println("")
 	fmt.Println("*******从不同来源读取数据*********")
-	fmt.Println("*******请选择数据源，请输入：*********")
+	fmt.Println("*******请选择数据源，请输入:*********")
 	fmt.Println("1 表示 标准输入")
 	fmt.Println("2 表示 普通文件")
 	fmt.Println("3 表示 从字符串")
@@ -102,14 +102,14 @@ Write 将 len(p) 个字节从 p 中写入到基本数据流中。它返回从 p 
 
     func Fprintln(w io.Writer, a ...interface{}) (n int, err error)
 
-方法的第一个参数是io.Writer，也就是说，任何实现了io.Writer接口的类型实例都可以传递进来；我们再看看Println方法内部实现：
+方法的第一个参数是io.Writer，也就是说，任何实现了io.Writer接口的类型实例都可以传递进来；我们再看看Println方法内部实现:
 
 
     func Println(a ...interface{}) (n int, err error) {
         return Fprintln(os.Stdout, a...)
     }
 
-我们不妨追溯一下os.Stdout：
+我们不妨追溯一下os.Stdout:
 
     Stdout = NewFile(uintptr(syscall.Stdout), "/dev/stdout")
 
@@ -117,7 +117,7 @@ Write 将 len(p) 个字节从 p 中写入到基本数据流中。它返回从 p 
 
 如果第一个参数传递的是bytes.Buffer，那么，内容便输出到了buffer中。
 
-在写Web程序时，比如：
+在写Web程序时，比如:
 
     func Index(rw http.ResponseWriter, req *http.Request) {
         fmt.Fprintln(rw, "Hello, World")

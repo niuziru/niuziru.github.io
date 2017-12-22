@@ -9,7 +9,7 @@ tags:
 
 转载: https://www.cnblogs.com/allegro/p/5005352.html
 
-# 本文依赖的环境：
+# 本文依赖的环境:
 
 * CentOS（大部分内容适用于其他Linux发行版）
 
@@ -33,7 +33,7 @@ cd /opt/tomcat6/bin/
 tar vzxf commons-daemon-native.tar.gz
 cd /opt/tomcat6/bin/commons-daemon-1.0.15-native-src/unix/
 ./configure
-     如果出现如下错误提示，说明未设置JAVA_HOME变量：
+     如果出现如下错误提示，说明未设置JAVA_HOME变量:
 
 *** Java compilation tools ***
 checking for JDK location... configure: error: Java Home not defined. Rerun with --with-java=... parameter
@@ -76,7 +76,7 @@ chown -R tomcat:tomcat /opt/tomcat6
 chmod a+x /opt/tomcat6/bin/daemon.sh
 ```
 
-现在可以使用这个脚本来操作tomcat了：
+现在可以使用这个脚本来操作tomcat了:
 
 ```bash
 启动:

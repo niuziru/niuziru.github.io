@@ -6,14 +6,14 @@ categories:
 tags:
 - 系统
 ---
-[转载：手工释放linux内存——/proc/sys/vm/drop_caches](https://www.cnblogs.com/jackhub/p/3736877.html)
+[转载:手工释放linux内存——/proc/sys/vm/drop_caches](https://www.cnblogs.com/jackhub/p/3736877.html)
 
 --手工释放linux内存——/proc/sys/vm/drop_caches
 
 总有很多朋友对于Linux的内存管理有疑问，之前一篇日志似乎也没能清除大家的疑虑。而在新版核心中，似乎对这个问题提供了新的解决方法，特转出来给大家参考一下。最后，还附上我对这方法的意见，欢迎各位一同讨论。
     当在Linux下频繁存取文件后，物理内存会很快被用光，当程序结束后，内存不会被正常释放，而是一直作为caching。这个问题，貌似有不少人在问，不过都没有看到有什么很好解决的办法。那么我来谈谈这个问题。
 
-# 一、通常情况 先来说说free命令：
+# 一、通常情况 先来说说free命令:
 
     [root@server ~]# free -m
     total　　used　　free　　shared　　buffers　　cached
@@ -21,7 +21,7 @@ tags:
     -/+ buffers/cache:    58 　　 191
     Swap: 　　511 　　　0　　　 511
 
-其中：
+其中:
 
 * total 内存总数
 * used 已经使用的内存数
@@ -46,7 +46,7 @@ buffers Buffer Cache和cached Page Cache 磁盘缓存的大小
 
 在我命令执行结束后，used为244MB，free为4MB，buffers为8MB，cached为174MB，天呐，都被cached吃掉了。别紧张，这是为了提高文件读取效率的做法。
 
-为了提高磁盘存取效率，Linux做了一些精心的设计，除了对dentry进行缓存（用于VFS，加速文件路径名到inode的转换），还采取了两种主要Cache方式：Buffer Cache
+为了提高磁盘存取效率，Linux做了一些精心的设计，除了对dentry进行缓存（用于VFS，加速文件路径名到inode的转换），还采取了两种主要Cache方式:Buffer Cache
 
 和Page Cache。前者针对磁盘块的读写，后者针对文件inode的读写。这些Cache有效缩短了 I/O系统调用（比如read，write，getdents）的时间。
 
@@ -66,13 +66,13 @@ buffers Buffer Cache和cached Page Cache 磁盘缓存的大小
 
 **/proc是一个虚拟文件系统，我们可以通过对它的读写操作做为与kernel实体间进行通信的一种手段。也就是说可以通过修改/proc中的文件，来对当前**
 
-kernel的行为做出调整。那么我们可以通过调整/proc/sys/vm/drop_caches来释放内存。操作如下：
+kernel的行为做出调整。那么我们可以通过调整/proc/sys/vm/drop_caches来释放内存。操作如下:
 
 首先，/proc/sys/vm/drop_caches的值，默认为0。
 
     [root@server test]# cat /proc/sys/vm/drop_caches 0
 
-手动执行sync命令（描述：sync 命令运行 sync 子例程。如果必须停止系统，则运行sync 命令以确保文件系统的完整性。sync 命令将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件）
+手动执行sync命令（描述:sync 命令运行 sync 子例程。如果必须停止系统，则运行sync 命令以确保文件系统的完整性。sync 命令将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件）
 
     [root@server test]# sync
 

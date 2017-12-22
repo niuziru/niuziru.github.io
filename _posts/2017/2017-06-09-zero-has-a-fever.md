@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 我的小宝贝——izero：吐了、发烧了
+title: 我的小宝贝——izero:吐了、发烧了
 categories:
 - Life
 tags:

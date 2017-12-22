@@ -82,7 +82,7 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
 ### 2.1、设置unity的位置
 参考[将 Ubuntu 16.04 LTS 的 Unity 启动器移动到桌面底部](http://www.linuxidc.com/Linux/2016-03/129359.htm)
 
-从左侧移动感到底部：
+从左侧移动感到底部:
 
     gsettings set com.canonical.Unity.Launcher launcher-position Bottom
 
@@ -125,7 +125,7 @@ General——》“Show Desktop”——》设置成“win + d”。
 
 ### 2.5、Ubuntu 切换中文目录或英文目录切换
 
-* 切换为英文：
+* 切换为英文:
 
 ```sh
 export LANG=en_US
@@ -133,7 +133,7 @@ xdg-user-dirs-gtk-update
 echo 选 update
 ```
 
-* 切换为中文：
+* 切换为中文:
 
 ```sh
 export LANG=zh_CN.UTF-8
@@ -152,7 +152,7 @@ echo -e "StrictHostKeyChecking no\nUserKnownHostsFile /dev/null" > ~/.ssh/config
 
 ### 2.7、安装gofont字体
 
-从github下载gofont, `git clone https://github.com/golang/image.git`, 拷贝`font/gofont/ttfs/`下面的字体到系统字体中：
+从github下载gofont, `git clone https://github.com/golang/image.git`, 拷贝`font/gofont/ttfs/`下面的字体到系统字体中:
 
 ```sh
 sudo mkdir /usr/share/fonts/gofonts
@@ -176,28 +176,28 @@ sudo fc-cache -f -v
      (正在读取数据库 ... 系统当前共安装有 218440 个文件和目录。)
      正准备解包 youdao-dict_1.0.2~ubuntu_amd64.deb  ...
      正在解包 youdao-dict (1.0.2~ubuntu) ...
-     dpkg: 依赖关系问题使得 youdao-dict 的配置工作不能继续：
-      youdao-dict 依赖于 python3-pyqt5；然而：
+     dpkg: 依赖关系问题使得 youdao-dict 的配置工作不能继续:
+      youdao-dict 依赖于 python3-pyqt5；然而:
        未安装软件包 python3-pyqt5。
-      youdao-dict 依赖于 python3-xlib；然而：
+      youdao-dict 依赖于 python3-xlib；然而:
        未安装软件包 python3-xlib。
-      youdao-dict 依赖于 tesseract-ocr；然而：
+      youdao-dict 依赖于 tesseract-ocr；然而:
        未安装软件包 tesseract-ocr。
-      youdao-dict 依赖于 tesseract-ocr-eng；然而：
+      youdao-dict 依赖于 tesseract-ocr-eng；然而:
        未安装软件包 tesseract-ocr-eng。
-      youdao-dict 依赖于 tesseract-ocr-chi-sim；然而：
+      youdao-dict 依赖于 tesseract-ocr-chi-sim；然而:
        未安装软件包 tesseract-ocr-chi-sim。
-      youdao-dict 依赖于 tesseract-ocr-chi-tra；然而：
+      youdao-dict 依赖于 tesseract-ocr-chi-tra；然而:
        未安装软件包 tesseract-ocr-chi-tra。
-      youdao-dict 依赖于 ttf-wqy-microhei；然而：
+      youdao-dict 依赖于 ttf-wqy-microhei；然而:
        未安装软件包 ttf-wqy-microhei。
-      youdao-dict 依赖于 python3-pyqt5.qtmultimedia；然而：
+      youdao-dict 依赖于 python3-pyqt5.qtmultimedia；然而:
        未安装软件包 python3-pyqt5.qtmultimedia。
-      youdao-dict 依赖于 python3-pyqt5.qtquick；然而：
+      youdao-dict 依赖于 python3-pyqt5.qtquick；然而:
        未安装软件包 python3-pyqt5.qtquick。
-      youdao-dict 依赖于 python3-pyqt5.qtwebkit；然而：
+      youdao-dict 依赖于 python3-pyqt5.qtwebkit；然而:
        未安装软件包 python3
-     dpkg: 处理软件包 youdao-dict (--install)时出错：
+     dpkg: 处理软件包 youdao-dict (--install)时出错:
       依赖关系问题 - 仍未被配置
      正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 ...
      正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 ...
@@ -205,14 +205,14 @@ sudo fc-cache -f -v
      正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 ...
      Rebuilding /usr/share/applications/bamf-2.index...
      正在处理用于 mime-support (3.59ubuntu1) 的触发器 ...
-     在处理时有错误发生：
+     在处理时有错误发生:
       youdao-dict
   zero@zero:/media/zero/Myself/Ubuntu1604$ sudo apt-get install python3-pyqt5
   正在读取软件包列表... 完成
   正在分析软件包的依赖关系树
   正在读取状态信息... 完成
-  您可能需要运行“apt-get -f install”来纠正下列错误：
-  下列软件包有未满足的依赖关系：
+  您可能需要运行“apt-get -f install”来纠正下列错误:
+  下列软件包有未满足的依赖关系:
    python3-pyqt5 : 依赖: libqt5designer5 (>= 5.0.2) 但是它将不会被安装
                    依赖: libqt5help5 (>= 5.3.0) 但是它将不会被安装
                    依赖: sip-py3api-11.2
@@ -232,7 +232,7 @@ sudo fc-cache -f -v
   正在分析软件包的依赖关系树
   正在读取状态信息... 完成
   正在修复依赖关系... 完成
-  将会同时安装下列软件：
+  将会同时安装下列软件:
     fonts-wqy-microhei liblept5 libopenjp2-7 libqt5clucene5 libqt5designer5
     libqt5help5 libqt5multimediawidgets5 libtesseract3 python3-pyqt5
     python3-pyqt5.qtmultimedia python3-pyqt5.qtquick python3-pyqt5.qtwebkit
@@ -240,9 +240,9 @@ sudo fc-cache -f -v
     qtdeclarative5-controls-plugin tesseract-ocr tesseract-ocr-chi-sim
     tesseract-ocr-chi-tra tesseract-ocr-eng tesseract-ocr-equ tesseract-ocr-osd
     ttf-wqy-microhei
-  建议安装：
+  建议安装:
     python3-pyqt5-dbg
-  下列【新】软件包将被安装：
+  下列【新】软件包将被安装:
     fonts-wqy-microhei liblept5 libopenjp2-7 libqt5clucene5 libqt5designer5
     libqt5help5 libqt5multimediawidgets5 libtesseract3 python3-pyqt5
     python3-pyqt5.qtmultimedia python3-pyqt5.qtquick python3-pyqt5.qtwebkit
@@ -341,7 +341,7 @@ $ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu.deb
 ### 10.1、画图工具
 #### 10.1.1、Dia
 
-在软件仓库里找`dia`或者使用：
+在软件仓库里找`dia`或者使用:
 
 ```bash
 sudo apt-get install dia
@@ -365,7 +365,7 @@ sudo apt-get install shutter
 
   [官网地址libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb](https://launchpad.net/~ubuntu-security-proposed/+archive/ubuntu/ppa/+build/10628783)
 
-* 安装StarUML：
+* 安装StarUML:
   * 下载并安装依赖库[libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb](https://launchpad.net/~ubuntu-security-proposed/+archive/ubuntu/ppa/+build/10628783)
 
 ```sh
@@ -385,7 +385,7 @@ sudo apt-get install shutter
 
 ```sh
 zero@zero:~$ sudo fdisk -l
-[sudo] zero 的密码：
+[sudo] zero 的密码:
 Disk /dev/sda: 232.9 GiB, 250059350016 bytes, 488397168 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
@@ -414,7 +414,7 @@ zero@zero:~$ sudo mount -t ntfs /dev/sda3 /mnt/E -o iocharset=utf8,umask=0
 ```
 
 ### 11.3、持久化，写入系统配置中
-挂载磁盘的位置在：`/etc/fstab`
+挂载磁盘的位置在:`/etc/fstab`
 
 ```sh
 zero@zero:~$ cat /etc/fstab
@@ -431,7 +431,7 @@ UUID=6acca2e8-0890-409d-b742-52b3ebac2050 /               ext4    errors=remount
 UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw              0       0
 ```
 
-加入我们的指令：
+加入我们的指令:
 
 ```sh
 zero@zero:~$ cat /etc/fstab
@@ -486,7 +486,7 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
 
     sudo apt-get install plank
 
-### 安装 Plank 主题：
+### 安装 Plank 主题:
 
     sudo add-apt-repository ppa:noobslab/macbuntu
     sudo apt-get update
@@ -494,7 +494,7 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
 
     安装 Ctrl + Right Click 选择主题。
 
-### 卸载主题命令：
+### 卸载主题命令:
 
     sudo apt-get autoremove plank macbuntu-os-plank-theme-lts-v7
 
@@ -503,21 +503,21 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
     cd && wget -O Mac.po http://drive.noobslab.com/data/Mac/change-name-on-panel/mac.po
     cd /usr/share/locale/en/LC_MESSAGES; sudo msgfmt -o unity.mo ~/Mac.po;rm ~/Mac.po;cd
 
-    语言上如果是其他非英语语言，将 /en 做相应修改：
+    语言上如果是其他非英语语言，将 /en 做相应修改:
 
 
 
-### 恢复原来的桌面文字命令：
+### 恢复原来的桌面文字命令:
 
     cd && wget -O Ubuntu.po http://drive.noobslab.com/data/Mac/change-name-on-panel/ubuntu.po
     cd /usr/share/locale/en/LC_MESSAGES; sudo msgfmt -o unity.mo ~/Ubuntu.po;rm ~/Ubuntu.po;cd
 
 ### 启动器上苹果Logo
-#### 命令：
+#### 命令:
     wget -O launcher_bfb.png http://drive.noobslab.com/data/Mac/launcher-logo/apple/launcher_bfb.png
     sudo mv launcher_bfb.png /usr/share/unity/icons/
 
-#### 恢复图标：
+#### 恢复图标:
 
     wget -O launcher_bfb.png http://drive.noobslab.com/data/Mac/launcher-logo/ubuntu/launcher_bfb.png
     sudo mv launcher_bfb.png /usr/share/unity/icons/
@@ -528,9 +528,9 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
     $sudo apt-get install  unity-tweak-tools
     $sudo apt-get install gnome-tweak-tool
 
-### 配置 Mac 字体：
+### 配置 Mac 字体:
 
-    安装字体命令：
+    安装字体命令:
     wget -O mac-fonts.zip http://drive.noobslab.com/data/Mac/macfonts.zip
     sudo unzip mac-fonts.zip -d /usr/share/fonts; rm mac-fonts.zip
     sudo fc-cache -f -v
@@ -538,25 +538,25 @@ UUID=16bc804c-af93-49da-820e-269c7a09d945 none            swap    sw            
     使用 Unity-Tweak-Tool, Gnome-Tweak-Tool 或 Ubuntu Tweak 软件更换字体。
 
 
-### 修改启动界面：
+### 修改启动界面:
 
     sudo add-apt-repository ppa:noobslab/themes
     sudo apt-get update
     sudo apt-get install macbuntu-os-bscreen-lts-v7
 
-    如果你喜欢 MBuntu 启动界面，你想恢复到 Ubuntu ，使用命令：
+    如果你喜欢 MBuntu 启动界面，你想恢复到 Ubuntu ，使用命令:
     sudo apt-get autoremove macbuntu-os-bscreen-lts-v7
 
-### 登陆迎宾界面：
+### 登陆迎宾界面:
 
-#### 安装命令：
+#### 安装命令:
 注意安装这个东东有风险，如果你不是在意，建议不安装，安装这个仅仅适合于 Ubuntu Unity – Lightdm 和 Ubuntu Gnome – gdm，其他桌面环境有风险。
 
     sudo add-apt-repository ppa:noobslab/themes
     sudo apt-get update
     sudo apt-get install macbuntu-os-lightdm-lts-v7
 
-#### 卸载恢复命令：
+#### 卸载恢复命令:
 
     sudo apt-get remove macbuntu-os-lightdm-lts-v7
 
@@ -589,7 +589,7 @@ $ sudo apt-get install dconf-tools
 若想换回terminal
     exec  gnome-terminal
     exec-arg -x
-否则：
+否则:
     exec  x-terminal-emulator
     exec-arg -e
 ```

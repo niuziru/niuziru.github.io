@@ -8,7 +8,7 @@ tags:
 ---
 学习自segmentfault[etcd rest api基本操作](https://segmentfault.com/a/1190000005649865)
 # ETCD示例
-* 通过浏览器/curl访问地址：
+* 通过浏览器/curl访问地址:
 
 http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 
@@ -16,7 +16,7 @@ http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 zero@zero ~> curl http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 {"action":"get","node":{"key":"/_etcd/registry/e77afb997af5a84983baa98fd42cf12f","dir":true,"nodes":[{"key":"/_etcd/registry/e77afb997af5a84983baa98fd42cf12f/f84fe4a4e816e778","value":"etcd1=http://192.168.99.102:2380","modifiedIndex":1113261726,"createdIndex":1113261726},{"key":"/_etcd/registry/e77afb997af5a84983baa98fd42cf12f/4eb2dcba58da982f","value":"etcd0=http://192.168.99.101:2380","modifiedIndex":1113260929,"createdIndex":1113260929},{"key":"/_etcd/registry/e77afb997af5a84983baa98fd42cf12f/aa5569b385caf33b","value":"etcd2=http://192.168.99.103:2380","modifiedIndex":1113261715,"createdIndex":1113261715}],"modifiedIndex":1113260647,"createdIndex":1113260647}}
 ```
-* 返回值：
+* 返回值:
 
 ```json
 {
@@ -109,7 +109,7 @@ zero@zero ~> curl -X PUT http://127.0.0.1:2379/v2/keys/hello -d value="world"
 {"action":"set","node":{"key":"/hello","value":"world","modifiedIndex":13,"createdIndex":13}}
 ```
 
-格式化返回值：
+格式化返回值:
 
 ```json
 {
@@ -132,7 +132,7 @@ zero@zero ~> curl -X PUT http://127.0.0.1:2379/v2/keys/zhongguo -d dir=true
 {"action":"set","node":{"key":"/zhongguo","dir":true,"modifiedIndex":14,"createdIndex":14}}
 ```
 
-格式化应答：
+格式化应答:
 
 ```json
 {
@@ -155,7 +155,7 @@ zero@zero ~> curl -X GET http://127.0.0.1:2379/v2/keys/
 {"action":"get","node":{"dir":true,"nodes":[{"key":"/hello","value":"world","modifiedIndex":13,"createdIndex":13},{"key":"/zhongguo","dir":true,"modifiedIndex":14,"createdIndex":14}]}}
 ```
 
-格式化应答：
+格式化应答:
 
 ```json
 {
@@ -187,7 +187,7 @@ zero@zero ~> curl -X PUT http://127.0.0.1:2379/v2/keys/ttlvar -d value="ttl_valu
 {"action":"set","node":{"key":"/ttlvar","value":"ttl_value","expiration":"2017-12-19T00:42:25.850309128Z","ttl":5,"modifiedIndex":15,"createdIndex":15}}
 ```
 
-* 格式化应答值：
+* 格式化应答值:
 
 ```json
 {

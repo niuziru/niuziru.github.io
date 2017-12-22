@@ -10,7 +10,7 @@ tags:
 
 # 1、Golang测试包
 
-golang自带了测试包（testing），直接可以进行单元测试、性能分析、输出结果验证等。简单看着官方文档试了试，总结一下：
+golang自带了测试包（testing），直接可以进行单元测试、性能分析、输出结果验证等。简单看着官方文档试了试，总结一下:
 目录结构和命令
 
 ## 目录结构
@@ -36,11 +36,11 @@ golang自带了测试包（testing），直接可以进行单元测试、性能�
 
 ## 注意点概述
 
-* 测试文件命名规则：xxx_test.go
-* 详细的testing库使用方法，具体参考：[Golang标准库测试部分](https://studygolang.com/static/pkgdoc/index.html) 或者 [Golang标准库示例的测试部分](http://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter09/09.0.html)
-* 测试方法命名规则：
-  * 基本测试：`Test[A-Z][A-z_]*`，`首`写字母`不能是小写字母[a-z]`
-  * 性能测试：`Benchmark[A-Z][A-z_]*`，`首`写字母`不能是小写字母[a-z]`
+* 测试文件命名规则:xxx_test.go
+* 详细的testing库使用方法，具体参考:[Golang标准库测试部分](https://studygolang.com/static/pkgdoc/index.html) 或者 [Golang标准库示例的测试部分](http://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter09/09.0.html)
+* 测试方法命名规则:
+  * 基本测试:`Test[A-Z][A-z_]*`，`首`写字母`不能是小写字母[a-z]`
+  * 性能测试:`Benchmark[A-Z][A-z_]*`，`首`写字母`不能是小写字母[a-z]`
 * 方法参数:
   * 基本测试: `t *testing.T`
   * 性能测试: `b *testing.B`
@@ -52,7 +52,7 @@ golang自带了测试包（testing），直接可以进行单元测试、性能�
 
 # 2、基本的函数测试
 
-待测试的MyTest.go源码如下：
+待测试的MyTest.go源码如下:
 
 ```golang
 package MyTest
@@ -76,12 +76,12 @@ func SetFieldValue(x *MyStruct, value string) {
 }
 ```
 
-对于MyTest_test.go，首先自然是要导入golang的测试包：
+对于MyTest_test.go，首先自然是要导入golang的测试包:
 
     package MyTest
     import testing
 
-基本的测试函数以Test开头，后面接的字符串，第一个字符必须是数字或者大写，例如：
+基本的测试函数以Test开头，后面接的字符串，第一个字符必须是数字或者大写，例如:
 
 ```golang
 func TestMytest(t *testing.T) {
@@ -97,7 +97,7 @@ func TestMytest(t *testing.T) {
 
 T是testing包里定义的一个结构体，其包含了名为common的接口，提供了很多格式化输出的功能，golang提供了自动检查与调用测试函数的机制，测试函数的执行逻辑则需要编写者自行完成。
 
-执行go test 结果为：
+执行go test 结果为:
 
 
     Call SetFieldValue()
@@ -105,7 +105,7 @@ T是testing包里定义的一个结构体，其包含了名为common的接口，
     ok  	/go/src/MyTest 0.004s
 
 如果写成`Testmytest`，运行时会直接忽略掉该函数。得到的结果仍然为`Pass`，但是不会打印`“Call SetFieldValue()”`，也就是说测试函数实际没有执行。
-修改一下判断条件：
+修改一下判断条件:
 
 ```golang
 func TestMytest(t *testing.T) {
@@ -119,7 +119,7 @@ func TestMytest(t *testing.T) {
 }
 ```
 
-这个测试用例不会通过, 而Error函数的入参就是测试不通过时打印的信息：
+这个测试用例不会通过, 而Error函数的入参就是测试不通过时打印的信息:
 
 ```sh
 SetFieldValue()
@@ -135,7 +135,7 @@ FAIL	_/Users/ronghuihe/Documents/code/golang/my/go/src/MyTest 0.004s
 
 # 3、性能分析函数
 
-testing包还自带了性能分析功能，可评估代码执行性能。性能分析函数也可以放到前面的xxx_test.go文件内，命名以`Benchmark`开头，如：
+testing包还自带了性能分析功能，可评估代码执行性能。性能分析函数也可以放到前面的xxx_test.go文件内，命名以`Benchmark`开头，如:
 
 ```golang
 func BenchmarkGetFieldValue(b *testing.B) {
@@ -148,7 +148,7 @@ func BenchmarkGetFieldValue(b *testing.B) {
 }
 ```
 
-其中b.N的值在执行过程中会自动调整，使得循环可以执行足够多次，以便得到较为准确的单次结果：
+其中b.N的值在执行过程中会自动调整，使得循环可以执行足够多次，以便得到较为准确的单次结果:
 性能分析加`-bench`参数执行，即`go test -bench` . (不能漏了最后这个点，它表示执行所有的性能测试函数）
 
 ```sh
@@ -165,7 +165,7 @@ SetFieldValue()
 
 分析testing包的源码benchmark.go里的launch函数和runN函数，可以看到golang会自行调节性能分析函数的调用次数。每次执行runN都会执行一次性能测试函数，而后根据运行时间，会确定后续的内部循环执行次数b.N，直到总的运行时间达到`go test -benchtime`指定的时间（如果没指定默认为1s）
 
-注意统计时间时，执行的是使用者编写的性能分析函数，如上例中的BenchmarkGetFieldValue，而最后输出的结果，表达的是for循环里函数的性能，因此for循环之前的代码执行时间很长的话，可能导致统计误差比较大，如果需要剔除for之前代码的影响，可以在for循环之前调用ResetTimer()接口重置本次统计的时间值：
+注意统计时间时，执行的是使用者编写的性能分析函数，如上例中的BenchmarkGetFieldValue，而最后输出的结果，表达的是for循环里函数的性能，因此for循环之前的代码执行时间很长的话，可能导致统计误差比较大，如果需要剔除for之前代码的影响，可以在for循环之前调用ResetTimer()接口重置本次统计的时间值:
 
 ```golang
 func BenchmarkGetFieldValue(b *testing.B) {
@@ -185,11 +185,11 @@ go test是go语言自带的测试工具，其中包含的是两类，单元测�
 
 ## 4.1、基本指令说明
 
-通过go help test可以看到go test的使用说明：
-格式形如：
+通过go help test可以看到go test的使用说明:
+格式形如:
 
     go test [-c] [-i] [build flags] [packages] [flags for test binary]
-参数解读：
+参数解读:
 
     -c : 编译go test成为可执行的二进制文件，但是不运行测试。
 

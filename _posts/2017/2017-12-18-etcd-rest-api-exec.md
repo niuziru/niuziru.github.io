@@ -59,7 +59,10 @@ zero@zero ~> curl http://discovery.etcd.io/e77afb997af5a84983baa98fd42cf12f
 * `sudo docker pull quay.io/coreos/etcd:v3.1.9`
 
 
-## `sudo docker run -d -p 2379:2379 -p 2380:2380 -name etcd quay.io/coreos/etcd:v3.2.0`
+## 启动ETCD
+
+* `sudo docker run -d --rm -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd:v3.2.0`
+* `docker run -it --rm -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd`
 
 
 * V2版本端口: `3379`

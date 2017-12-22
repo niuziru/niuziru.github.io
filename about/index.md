@@ -4,7 +4,7 @@ layout: page
 comments: yes
 ---
 
-<h1 color=red> I'm Zero's Daddy.</h1>
+## `I'm Zero's Daddy.`
 
 这家伙很懒，什么都没有留下来...... 
 

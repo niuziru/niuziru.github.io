@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C语言基础学习——指针相关
+title: C语言基础学习
 categories:
 - Technology
 tags:

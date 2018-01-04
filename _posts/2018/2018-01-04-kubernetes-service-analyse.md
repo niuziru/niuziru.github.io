@@ -4,7 +4,7 @@ title: Kubernetes服务发布分析
 categories:
 - Technology
 tags:
-- kubernetes
+- K8S
 ---
 
 # Kubernetes架构

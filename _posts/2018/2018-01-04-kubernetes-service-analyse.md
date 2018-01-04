@@ -47,7 +47,7 @@ tags:
 
 引用[十分钟带你理解Kubernetes核心概念](http://www.dockone.io/article/932)中的几张图更清晰的了解k8s的核心概念.
 
-### k8s cluster
+### 1、k8s cluster
 
 下图可知k8s的集群是由master和node组成.
 
@@ -55,14 +55,14 @@ tags:
 
 <img src="/images/k8s-cluster.png" alt="Kubernetes集群图" width="100%" height="100%" />
 
-### pod
+### 2、pod
 
 Pod是一组紧密关联的容器集合，它们共享IPC、Network和UTS namespace，是Kubernetes调度的基本单位。详细可以阅读[kubernetes handbook pod](https://kubernetes.feisky.xyz/concepts/pod.html)
 
 <img src="/images/k8s-pod.png" alt="Kubernetes集群图" width="100%" height="100%" />
 
 
-### rc/rs
+### 3、rc/rs
 
 ReplicationController（也简称为rc）用来确保容器应用的副本数始终保持在用户定义的副本数，即如果有容器异常退出，会自动创建新的Pod来替代；而异常多出来的容器也会自动回收。ReplicationController的典型应用场景包括确保健康Pod的数量、弹性伸缩、滚动升级以及应用多版本发布跟踪等。
 
@@ -72,13 +72,14 @@ ReplicationController（也简称为rc）用来确保容器应用的副本数始
 
 <img src="/images/kubernetes-rc.gif" alt="Kubernetes集群图" width="100%" height="100%" />
 
-### svc
+### 4、svc
 
 Service(简称svc)是对一组提供相同功能的Pods的抽象，并为它们提供一个统一的入口。借助Service，应用可以方便的实现服务发现与负载均衡，并实现应用的零宕机升级。
 
 <img src="/images/kubernetes-svc.gif" alt="Kubernetes集群图" width="100%" height="100%" />
 
 ## k8s中应用的服务发布
+
 
 
 

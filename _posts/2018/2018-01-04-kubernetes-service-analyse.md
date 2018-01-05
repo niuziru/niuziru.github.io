@@ -9,24 +9,9 @@ tags:
 
 # Kubernetes架构
 
-## 概述
-下图是k8s(kubernetes, k与s之间恰好由8个字符组成,故社区简称k8s)的架构图,它由:
-
-|角色  |组件  |备注  |
-|:---|:---|:---|
-|master|||
-||kube-apiserver||
-||kube-scheduler||
-||kube-controller-manager||
-||etcd||
-|Slave|||
-||kubelet||
-||kube-proxy||
-||||
-
+下图是k8s(kubernetes, k与s之间恰好由8个字符组成,故社区简称k8s)的架构图，详细参考[Kubernetes架构简述](k8s-arch-introduction/)
 
 <img src="/images/kubernetes-arch.png" alt="Kubernetes架构图" width="100%" height="100%" />
-
 
 如果用户迁移应用到k8s平台,则需要了解应用间的互相访问问题.
 

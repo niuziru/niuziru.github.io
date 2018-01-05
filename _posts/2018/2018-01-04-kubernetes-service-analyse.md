@@ -83,6 +83,7 @@ Service(简称svc)是对一组提供相同功能的Pods的抽象，并为它们�
 
 
 
+
 # 参考资料
 
 * [细数Kubernetes Service那些事－kubernetes 服务发布以及在eBay的实践](http://blog.csdn.net/ebay/article/details/52798074)

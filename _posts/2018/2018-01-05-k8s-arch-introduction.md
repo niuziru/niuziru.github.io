@@ -63,7 +63,7 @@ tags:
 * k8s master以双实例模式部署在2台服务器上
 * etcd以3节点集群模式部署在3台服务器上
 
-<img src="/images/kubernetes-arch-ha3.png" alt="Kubernetes生产环境架构图" width="100%" height="100%" />
+<img src="/images/kubernetes-arch-ha3.jpeg" alt="Kubernetes生产环境架构图" width="100%" height="100%" />
 
 注意：
 

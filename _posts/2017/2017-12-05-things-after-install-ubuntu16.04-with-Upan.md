@@ -347,6 +347,30 @@ $ sudo dpkg -i netease-cloud-music_1.1.0_amd64_ubuntu.deb
 sudo apt-get install dia
 ```
 
+Dia是基于GTK的开源流程图软件，适用于Linux, Unix和Windows，以 GPL 许可发布。一个10MB量级的免费软件，代替visio基本没问题。发现直接在dia中无法用fcitx输入中文
+
+解决办法:
+* <1>在命令行中用：dia-normal来运行dia，而不要用默认的dia来运行。这样就可以输入中文啦，不过问题就是toolbar会独立出来。
+
+* <2> 修改dia的启动指令
+
+打开软件后发现不能输入中文，网上搜索一圈后找到以下解决方案
+
+    sudo vim /usr/bin/dia
+
+然后把
+
+    dia-normal --integrated "$@"
+
+修改成
+
+    dia-normal  "$@"
+
+重新启动dia，输入法选择系统默认（我的系统输入法是搜狗输入法(fcitx)），就可以输入中文了。
+不过这样一改，工具条变成浮动的了。
+
+
+
 #### 10.1.2、kolourpaint
 
 ```bash

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 我的小宝贝——izero：我们是幸运的，期待小宝贝能够早日康复……
+title: 我的小宝贝——izero:我们是幸运的，期待小宝贝能够早日康复……
 categories:
 - Life
 tags:

@@ -17,7 +17,7 @@ tags:
 
 <img src="/images/nzr_zkz.jpg" alt="牛牛&准考证1" width="50%" height="50%" />
 
-<img src="/images/zero_zkz.jpg" alt="牛牛&准考证2" width="50%" height="50%" />
+<img src="/images/zero_zkz.jpg" alt="牛牛&准考证3" width="50%" height="50%" />
 
 做更好的自己
 
